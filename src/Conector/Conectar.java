@@ -5,13 +5,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conectar {
-	private  Connection cn;
+	protected  Connection cn;
+	
+	private String host = "localhost";
+	private String bbdd = "biblioteca2";
+	private String usuario = "root";
+	private String contrasenia = "";
 	 
 	public void conectar() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost/biblioteca2";
-			cn = (Connection) DriverManager.getConnection(url,"root","");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			this.cn = DriverManager.getConnection("jdbc:mysql://" + host + "/" + bbdd,usuario,contrasenia );
+
 			
 		} catch (ClassNotFoundException e) {
 			System.out.println("Error al importar Driver");
